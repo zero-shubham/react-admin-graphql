@@ -21,6 +21,7 @@ export const authProvider = {
         password: params.password,
       },
     });
+    client.stop();
 
     response = response.data.login;
 
@@ -44,6 +45,7 @@ export const authProvider = {
         }
       `,
     });
+    client.stop();
 
     localStorage.removeItem('token');
     return Promise.resolve();

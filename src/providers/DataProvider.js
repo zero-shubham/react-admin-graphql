@@ -13,6 +13,7 @@ export const dataProvider = {
         ...params,
       },
     });
+    client.stop();
 
     const fieldName = resource.slice(0, -1);
     response = response.data[fieldName];
@@ -27,6 +28,8 @@ export const dataProvider = {
       page: (params.pagination.page - 1) * params.pagination.perPage,
       perPage: params.pagination.perPage,
     };
+    client.stop();
+
     let response = await client.query({
       query: queries[`getList_${resource}`],
       variables: {
@@ -48,6 +51,8 @@ export const dataProvider = {
     let response = await client.query({
       query: queries[`getList_${resource}`],
     });
+    client.stop();
+
     response = response.data[resource];
     response = response[resource].filter((item) =>
       params.ids.includes(item.id)
@@ -68,6 +73,7 @@ export const dataProvider = {
         ...params.data,
       },
     });
+    client.stop();
 
     const fieldName = resource.slice(0, -1);
     response = response.data[`create_${fieldName}`];
